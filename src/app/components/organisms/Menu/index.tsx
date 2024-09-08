@@ -39,7 +39,7 @@ export const Menu: FC = () => {
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
-        onClose={handleClose}adsadas
+        onClose={handleClose}
         onClick={handleClose}
         PaperProps={{
           elevation: 0,
