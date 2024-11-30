@@ -1,13 +1,12 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { Header } from './components/organisms/Header';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import { Header } from './components/organisms/Header';
 import { SideDrawer } from './components/organisms/SideDrawer';
-import { Box, Breadcrumbs, Grid, Stack } from '@mui/material';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,22 +21,36 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className} style={{ backgroundColor: '#111D39' }}>
+    <html lang="en" className="overflow-clip">
+      <body className={`${inter.className} overflow-clip`}>
+        <div className="relative grid grid-cols-[32px_1fr] md:grid-cols-[256px_1fr] grid-rows-[auto_1fr] w-full h-full">
+          <div className="hidden md:block md:col-span-1 row-span-2">
+            <SideDrawer />
+          </div>
+          <div className="sticky top-0 col-span-2 md:col-span-1 row-span-1">
+            <Header />
+          </div>
+
+          <div className="col-span-2 md:col-span-1 row-span-1 overflow-y-auto bg-gray-100">
+            {children}
+          </div>
+        </div>
         {/* <body className={inter.className} style={{ backgroundColor: '#0E234E' }}> */}
-        <div style={{ height: '100vh' }}>
+        {/* <div style={{ height: '100vh' }}>
           <div
+            className="h-full relative grid"
             style={{
               display: 'grid',
               height: '100%',
               position: 'relative',
-              gridTemplateAreas: 'header content',
+              gridTemplateAreas: `sidebar header header
+                                  sidebar content content
+                                  sidebar content content`,
               gridTemplateRows: '56px auto',
             }}
           >
-            <div>
-              <Header />
-            </div>
+            <SideDrawer />
+            <Header />
             {/* <Box
             sx={{
               display: 'flex',
@@ -47,21 +60,20 @@ export default function RootLayout({
             }}
           > */}
 
-            <div
+        {/* <div
               style={{
                 display: 'flex',
                 position: 'relative',
                 height: '100%',
               }}
             >
-              <SideDrawer />
               {children}
-            </div>
-          </div>
+            </div> */}
+        {/* </div> */}
 
-          {/* <Box sx={{ overflowY: 'auto', flex: 1 }}></Box> */}
-          {/* </Box> */}
-        </div>
+        {/* <Box sx={{ overflowY: 'auto', flex: 1 }}></Box> */}
+        {/* </Box> */}
+        {/* </div>  */}
         {/* <Grid container={true} sx={{ height: '100vh' }}>
           <Grid item={true} xs={12}>
             <Header />

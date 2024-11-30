@@ -1,5 +1,5 @@
 import { FC } from 'react';
 
-export const Menu: FC = () => {
+export const HeaderMenu: FC = () => {
   return <div></div>;
 };

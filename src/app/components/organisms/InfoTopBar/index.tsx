@@ -1,39 +1,31 @@
 'use client';
 
-import { Box, Button, Typography } from '@mui/material';
-import { FC, useRef } from 'react';
-import { CustomBreadcrumbs } from '../../molecules/Breadcrumbs';
-import { usePathname } from 'next/navigation';
 import { routesMap } from '@/constants/routes';
-import { Modal } from '../Modal';
+import { usePathname } from 'next/navigation';
+import { FC, useMemo } from 'react';
+import { Button } from '../../atoms/Button';
+import { Text } from '../../atoms/Text';
+import { InfoTopBarProps } from './types';
 
-export const InfoTopBar: FC = () => {
-  // Refs
-  const isModalOpen = useRef(false);
-  // States
+export const InfoTopBar: FC<InfoTopBarProps> = ({
+  buttonTitle,
+  buttonClick,
+}) => {
   const pathname = usePathname();
 
-  const handleOpenModal = () => {
-    isModalOpen.current = true;
-  };
-
-  const handleCloseModal = () => {
-    isModalOpen.current = false;
-  };
+  const currentRouteName = useMemo(() => routesMap.get(pathname) ?? '', []);
+  console.log('InfoTopBar', buttonTitle);
 
   return (
-    <Box sx={{ marginBottom: '16px' }}>
-      <CustomBreadcrumbs />
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Typography variant="h5">{routesMap.get(pathname)}</Typography>
-        <Modal />
-      </Box>
-    </Box>
+    <div className="mb-4">
+      <div className="flex flex-row justify-between items-center w-full">
+        <Text variant="h1">{currentRouteName}</Text>
+        <Button
+          title={buttonTitle ?? ''}
+          variant="outline"
+          onClick={buttonClick}
+        />
+      </div>
+    </div>
   );
 };

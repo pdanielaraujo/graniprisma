@@ -1,13 +1,4 @@
-import {
-  Box,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from '@mui/material';
+import Image from 'next/image';
 import { FC } from 'react';
 
 const TABLE_HEADER_CELL_LABELS = ['ID', 'NAME', 'AGE', 'ADDRESS'];
@@ -57,75 +48,175 @@ const mockData = [
   },
 ];
 
-const cellInnerRightBorderStyle = {
-  borderColor: '#3b414f',
-  borderWidth: '0 1px 0 0',
-  borderStyle: 'solid',
-};
-const tableBodyRowTopBorderStyle = {
-  borderColor: '#3b414f',
-  borderWidth: '1px 0 0 0',
-  borderStyle: 'solid',
-};
-
 export const InfiniteScrollTable: FC = () => {
   return (
-    <TableContainer
-      sx={{
-        width: '100%',
-        // backgroundColor: '#091738',
-        borderRadius: '8px',
-        boxSizing: 'border-box',
-        border: '1px solid #3b414f',
-      }}
-    >
-      <Table
-        sx={{
-          '& .MuiTableCell-root': {
-            borderBottom: 'none',
-          },
-        }}
-      >
-        {/* <TableHead sx={{ boxShadow: '0 0 8px 2px #060d1e' }}> */}
-        <TableHead sx={{ boxShadow: '0 0 8px 3px #0d1321' }}>
-          <TableRow sx={{ borderBottom: 0 }}>
-            {TABLE_HEADER_CELL_LABELS.map((label, index) => (
-              <TableCell
-                key={label}
-                sx={
-                  TABLE_HEADER_CELL_LABELS.length - 1 === index
-                    ? undefined
-                    : cellInnerRightBorderStyle
-                }
-              >
-                <Typography sx={{ color: '#c4c4c4', fontSize: 12 }}>
-                  {label}
-                </Typography>
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {mockData.map((data) => (
-            <TableRow key={data.id} sx={tableBodyRowTopBorderStyle}>
-              <TableCell sx={cellInnerRightBorderStyle}>
-                <Typography sx={{ color: '#c4c4c4' }}>{data.id}</Typography>
-              </TableCell>
-              <TableCell sx={cellInnerRightBorderStyle}>
-                <Typography sx={{ color: '#c4c4c4' }}>{data.name}</Typography>
-              </TableCell>
-              <TableCell sx={cellInnerRightBorderStyle}>
-                <Typography sx={{ color: '#c4c4c4' }}>{data.age}</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography sx={{ color: '#c4c4c4' }}>
-                  {data.address}
-                </Typography>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div className="overflow-x-auto bg-white shadow-md rounded-lg">
+      <table className="w-full text-left text-gray-700">
+        <thead className="bg-gray-100 text-gray-600 text-sm uppercase">
+          <tr>
+            <th className="py-3 px-6">Name</th>
+            <th className="py-3 px-6">Access Level</th>
+            <th className="py-3 px-6">Created At</th>
+            <th className="py-3 px-6">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr className="border-b hover:bg-gray-50">
+            <td className="py-4 px-6 flex items-center space-x-4">
+              <Image
+                className="rounded-full"
+                src="/xxx.png"
+                alt="Profile picture"
+                width={50}
+                height={50}
+              />
+              <span className="font-medium text-gray-900">Factual Cody</span>
+            </td>
+            <td className="py-4 px-6">Owner</td>
+            <td className="py-4 px-6">Sept 07, 2023</td>
+            <td className="py-4 px-6 flex items-center space-x-2">
+              <button className="px-2 py-1 rounded bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm">
+                Code
+              </button>
+              <button className="px-2 py-1 rounded bg-blue-500 hover:bg-blue-600 text-white text-sm">
+                Share
+              </button>
+              <button className="p-2 rounded-full hover:bg-gray-100">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-gray-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 12h12M6 6h12M6 18h12"
+                  />
+                </svg>
+              </button>
+            </td>
+          </tr>
+
+          <tr className="border-b hover:bg-gray-50">
+            <td className="py-4 px-6 flex items-center space-x-4">
+              <img
+                className="w-10 h-10 rounded-full"
+                src="path_to_image"
+                alt="Profile picture"
+              />
+              <span className="font-medium text-gray-900">Alan Marcus</span>
+            </td>
+            <td className="py-4 px-6">Owner</td>
+            <td className="py-4 px-6">Sept 07, 2023</td>
+            <td className="py-4 px-6 flex items-center space-x-2">
+              <button className="px-2 py-1 rounded bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm">
+                Code
+              </button>
+              <button className="px-2 py-1 rounded bg-blue-500 hover:bg-blue-600 text-white text-sm">
+                Share
+              </button>
+              <button className="p-2 rounded-full hover:bg-gray-100">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-gray-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 12h12M6 6h12M6 18h12"
+                  />
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          more recently with desktop publishing software like Aldus PageMaker
+          including versions of Lorem Ipsum.
+        </p>
+      </div>
+      <div>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          more recently with desktop publishing software like Aldus PageMaker
+          including versions of Lorem Ipsum.
+        </p>
+      </div>
+      <div>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          more recently with desktop publishing software like Aldus PageMaker
+          including versions of Lorem Ipsum.
+        </p>
+      </div>
+      <div>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          more recently with desktop publishing software like Aldus PageMaker
+          including versions of Lorem Ipsum.
+        </p>
+      </div>
+      <div>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          more recently with desktop publishing software like Aldus PageMaker
+          including versions of Lorem Ipsum.
+        </p>
+      </div>
+      <div>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          more recently with desktop publishing software like Aldus PageMaker
+          including versions of Lorem Ipsum.
+        </p>
+      </div>
+    </div>
   );
 };
