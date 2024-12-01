@@ -1,6 +1,8 @@
 export type ButtonProps = {
-  variant?: 'primary' | 'link' | 'outline';
   color?: string;
-  title: string;
+  className?: string;
   onClick?: () => void;
+  title: string;
+  type?: 'submit' | 'reset' | 'button' | undefined;
+  variant?: 'primary' | 'link' | 'outline';
 };

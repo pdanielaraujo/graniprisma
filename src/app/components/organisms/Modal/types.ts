@@ -1,5 +1,9 @@
+import { ReactNode } from 'react';
+
 export type ModalProps = {
-  props?: Record<string, unknown>;
+  children: ReactNode;
   open: boolean;
+  title: string;
+  description?: string;
   handleClose: () => void;
 };

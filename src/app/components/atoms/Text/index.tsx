@@ -20,11 +20,7 @@ export const Text: FC<TextProps> = ({
     }
     case 'buttonText': {
       return (
-        <span
-          className={`${className} ${color ? `text-${color}` : 'text-blue-500'} text-sm`}
-        >
-          {children}
-        </span>
+        <span className={`${className} text-${color} text-sm`}>{children}</span>
       );
     }
     case 'h1': {

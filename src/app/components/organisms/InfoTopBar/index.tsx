@@ -22,7 +22,7 @@ export const InfoTopBar: FC<InfoTopBarProps> = ({
         <Text variant="h1">{currentRouteName}</Text>
         <Button
           title={buttonTitle ?? ''}
-          variant="outline"
+          variant="primary"
           onClick={buttonClick}
         />
       </div>

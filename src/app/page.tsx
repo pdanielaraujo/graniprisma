@@ -3,6 +3,14 @@
 import { useState } from 'react';
 import { PageLayout } from './components/layouts/PageLayout';
 import { InfiniteScrollTable } from './components/organisms/Table';
+import { Modal } from './components/organisms/Modal';
+import { Form } from './components/organisms/Form';
+import { useForm } from 'react-hook-form';
+
+type Inputs = {
+  name: string;
+  email: string;
+};
 
 export default function Home() {
   const [open, setOpen] = useState(false);
@@ -12,17 +20,61 @@ export default function Home() {
   };
 
   const handleClose = () => {
+    reset();
     setOpen(false);
   };
 
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  console.log({ errors });
+
+  const onSubmit = (values: Inputs) => {
+    console.log({ values });
+  };
+
+  console.log(watch('name'));
+  console.log(watch('email'));
+
   return (
-    <PageLayout
-      open={open}
-      buttonTitle={'adsdasdas'}
-      handleOpenModal={handleOpen}
-      handleCloseModal={handleClose}
-    >
+    <PageLayout buttonTitle="Criar inicio" handleOpenModal={handleOpen}>
       <InfiniteScrollTable />
+      <Modal open={open} handleClose={handleClose} title="Criar inicio">
+        <Form
+          actions={[
+            {
+              onClick: () => {
+                console.log('1dasdas');
+                handleClose();
+                handleSubmit(onSubmit);
+                console.log('2dasdas');
+              },
+              title: 'Criar',
+              type: 'submit',
+            },
+          ]}
+          inputs={[
+            {
+              label: 'Nome',
+              name: 'name',
+              placeholder: 'Escreve um nome',
+              register,
+            },
+            {
+              label: 'Email',
+              name: 'email',
+              placeholder: 'Escreve um email',
+              register,
+            },
+          ]}
+          onSubmit={() => 'onSubmit'}
+        />
+      </Modal>
     </PageLayout>
   );
 }

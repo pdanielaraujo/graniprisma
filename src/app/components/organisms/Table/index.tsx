@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { FC } from 'react';
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 const TABLE_HEADER_CELL_LABELS = ['ID', 'NAME', 'AGE', 'ADDRESS'];
 
@@ -50,96 +51,41 @@ const mockData = [
 
 export const InfiniteScrollTable: FC = () => {
   return (
-    <div className="overflow-x-auto bg-white shadow-md rounded-lg">
+    <div className="overflow-x-auto shadow-md">
       <table className="w-full text-left text-gray-700">
-        <thead className="bg-gray-100 text-gray-600 text-sm uppercase">
+        <thead className="bg-blue-500 text-gray-100 text-sm uppercase border-b">
           <tr>
             <th className="py-3 px-6">Name</th>
-            <th className="py-3 px-6">Access Level</th>
-            <th className="py-3 px-6">Created At</th>
+            <th className="py-3 px-6">Age</th>
+            <th className="py-3 px-6">Address</th>
             <th className="py-3 px-6">Action</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr className="border-b hover:bg-gray-50">
-            <td className="py-4 px-6 flex items-center space-x-4">
-              <Image
-                className="rounded-full"
-                src="/xxx.png"
-                alt="Profile picture"
-                width={50}
-                height={50}
-              />
-              <span className="font-medium text-gray-900">Factual Cody</span>
-            </td>
-            <td className="py-4 px-6">Owner</td>
-            <td className="py-4 px-6">Sept 07, 2023</td>
-            <td className="py-4 px-6 flex items-center space-x-2">
-              <button className="px-2 py-1 rounded bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm">
-                Code
-              </button>
-              <button className="px-2 py-1 rounded bg-blue-500 hover:bg-blue-600 text-white text-sm">
-                Share
-              </button>
-              <button className="p-2 rounded-full hover:bg-gray-100">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 12h12M6 6h12M6 18h12"
-                  />
-                </svg>
-              </button>
-            </td>
-          </tr>
-
-          <tr className="border-b hover:bg-gray-50">
-            <td className="py-4 px-6 flex items-center space-x-4">
-              <img
-                className="w-10 h-10 rounded-full"
-                src="path_to_image"
-                alt="Profile picture"
-              />
-              <span className="font-medium text-gray-900">Alan Marcus</span>
-            </td>
-            <td className="py-4 px-6">Owner</td>
-            <td className="py-4 px-6">Sept 07, 2023</td>
-            <td className="py-4 px-6 flex items-center space-x-2">
-              <button className="px-2 py-1 rounded bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm">
-                Code
-              </button>
-              <button className="px-2 py-1 rounded bg-blue-500 hover:bg-blue-600 text-white text-sm">
-                Share
-              </button>
-              <button className="p-2 rounded-full hover:bg-gray-100">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 12h12M6 6h12M6 18h12"
-                  />
-                </svg>
-              </button>
-            </td>
-          </tr>
+          {mockData.map((data) => (
+            <tr
+              key={data.id}
+              className="border-b hover:bg-gray-200 cursor-pointer"
+            >
+              <td className="py-4 px-6">{data.name}</td>
+              <td className="py-4 px-6">{data.age}</td>
+              <td className="py-4 px-6">{data.address}</td>
+              <td className="py-4 px-6 flex space-x-2">
+                <PencilSquareIcon
+                  width={24}
+                  className="text-yellow-300 hover:text-yellow-500"
+                />
+                <TrashIcon
+                  width={24}
+                  className="text-red-300 hover:text-red-500"
+                />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
-      <div>
+      {/* <div>
         <p>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
@@ -216,7 +162,7 @@ export const InfiniteScrollTable: FC = () => {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };
