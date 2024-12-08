@@ -1,6 +1,6 @@
 'use client';
 
-import { routesMap } from '@/constants/routes';
+import { routesMap } from '@/constants/frontEnd/routes';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { FC, useMemo } from 'react';

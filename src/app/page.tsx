@@ -1,11 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { PageLayout } from './components/layouts/PageLayout';
-import { InfiniteScrollTable } from './components/organisms/Table';
-import { Modal } from './components/organisms/Modal';
-import { Form } from './components/organisms/Form';
 import { useForm } from 'react-hook-form';
+import { PageLayout } from '../components/layouts/PageLayout';
+import { Form } from '../components/organisms/Form';
+import { Modal } from '../components/organisms/Modal';
+import { InfiniteScrollTable } from '../components/organisms/Table';
 
 type Inputs = {
   name: string;

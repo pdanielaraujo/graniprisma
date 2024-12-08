@@ -4,11 +4,11 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 // import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { Header } from './components/organisms/Header';
-import { SideDrawer } from './components/organisms/SideDrawer';
-import './globals.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Inter } from 'next/font/google';
+import { Header } from '../components/organisms/Header';
+import { SideDrawer } from '../components/organisms/SideDrawer';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 

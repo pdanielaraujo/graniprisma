@@ -1,4 +1,7 @@
-import { PageLayout, PageLayoutProps } from '../components/layouts/PageLayout';
+import {
+  PageLayout,
+  PageLayoutProps,
+} from '../../components/layouts/PageLayout';
 
 export default function SuppliersPageLayout({
   children,
